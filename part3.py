@@ -16,7 +16,7 @@ for table in df_tables['name']:
     print(cols[['name','type']])
     print()
 
-# Task 1: choose an interesting feature
+# Task: choose an interesting feature
 feature = 'danceability'
 
 # compute the threshold for the top 10% of tracks on this feature
@@ -67,7 +67,7 @@ print(artist_counts.head(20))
 print("\nArtists that stand out (highest counts):")
 print(artist_counts.head(5))
 
-# Task 2: divide time window in eras such as 70s, 80s, 90s, etc.
+# Task: divide time window in eras such as 70s, 80s, 90s, etc.
 # load albums_data into DataFrame to work with release_date
 albums = pd.read_sql_query("SELECT * FROM albums_data", conn)
 
