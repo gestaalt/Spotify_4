@@ -109,7 +109,6 @@ def main():
 
 # Plot for daceability of album #
 
-        import matplotlib.pyplot as plt
         plt.figure()
         plt.plot(df["danceability"].values, marker="o", color = "lightpink")
         plt.title(f"Danceability across tracks: {ALBUM_NAME}")
@@ -131,12 +130,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-import sqlite3
-import pandas as pd
-
-DB_PATH = "spotify_database.db"  
 
 def connect(db_path):
     conn = sqlite3.connect(db_path)
@@ -213,7 +206,6 @@ def main():
     plt.show()
 
     conn.close()
-
 
 if __name__ == "__main__":
     main()
