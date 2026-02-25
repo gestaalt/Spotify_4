@@ -99,7 +99,7 @@ def main():
         print("\nConsistency summary (lower std/range = more consistent):")
         print(summary.to_string(index=False))
 
-# Interpretation #
+# Interpretation of the album features #
 
         dance_range = summary.loc[summary["feature"] == "danceability", "range"].iloc[0]
         loud_range = summary.loc[summary["feature"] == "loudness", "range"].iloc[0]
