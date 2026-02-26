@@ -69,7 +69,7 @@ def regression_model():
     cdf = df[df['followers'] > 0].copy()
     X = np.log(cdf['followers'])
     y = cdf['artist_popularity']
-    X = sm.add_constant(X)  # voegt β0 toe
+    X = sm.add_constant(X)  # adds β0 
     
     model = sm.OLS(y, X).fit()
     # print(model.summary())
@@ -105,6 +105,9 @@ def over_legacy(model):
     overperformers = cdf.sort_values(by='residual', ascending=False).head(10)
     legacy_artists = cdf.sort_values(by='residual').head(10)
     #Residual is the difference between an artist’s actual popularity and the popularity predicted by the model based on followers.
+    #Higer residual, artist = more popular than the model anticipated
+    #Lower residual, artist = less popular than the model anticipated
+    #Closer to 0 means model more accurate
     
     print("\nTop Overperformers:")
     print(overperformers[['name', 'artist_popularity', 'followers', 'residual']])
