@@ -11,7 +11,7 @@ def connect(db_path: str) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row  
     return conn
 
-ef list_tables(conn: sqlite3.Connection) -> list[str]:
+def list_tables(conn: sqlite3.Connection) -> list[str]:
     cur = conn.cursor()
     cur.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;")
     return [r["name"] for r in cur.fetchall()]
