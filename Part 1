@@ -59,7 +59,6 @@ def plot_top10():
     plt.show()
 
 # --- Popularity vs Followers Analysis ---
-# print("\n--- Popularity vs Followers Analysis ---")
 def popularity_vs_followers():
     cdf = df[df['followers'] > 0].copy()
     correlation = cdf['artist_popularity'].corr(np.log(cdf['followers']))
@@ -72,7 +71,6 @@ def regression_model():
     X = sm.add_constant(X)  # adds β0 
     
     model = sm.OLS(y, X).fit()
-    # print(model.summary())
     
     return model
 
@@ -119,18 +117,18 @@ def over_legacy(model):
 
 # # --- Genre Analysis Functions ---
 def top10_by_genre(genre):
-    #Pak alle genre kolommen
+    #Fetch all genre columns
     genre_cols = [genre for genre in df.columns if genre.startswith("genre_")]
 
     selected_rows = []
 
-    #Loop door elke rij
+    #Loop trough every row
     for _, row in df.iterrows():
 
-        #Maak een lijst van alle genres van deze artiest
+        #Makes a list of all genres of that artist
         genres = [str(row[col]).lower() for col in genre_cols if pd.notna(row[col])]
 
-        #Check of genre erin zit
+        #Checks if genre is in it
         if genre in genres:
             selected_rows.append(row)
 
@@ -144,19 +142,18 @@ def top10_by_genre(genre):
 
 def analyze_genre_impact(df):
     """
-    Analyseert of het aantal genres per artiest correleert met popularity en followers.
-    Werkt met genre_1, genre_2, ... kolommen.
+    Analyzes if the amount of genres per artist has a correlation with popularity and followers
     """
     
     df = df.copy()
     
-    # Pak alle genre kolommen
+    #Fetch all genre columns
     genre_cols = [col for col in df.columns if col.startswith("genre_")]
     
-    # Tel aantal niet-lege genres per rij
+    # Count amount non-empty genres per row
     df['genre_count'] = df[genre_cols].notna().sum(axis=1)
     
-    # Correlaties
+    # Correlations
     corr_pop = df[['genre_count', 'artist_popularity']].corr().iloc[0,1]
     corr_follow = df[['genre_count', 'followers']].corr().iloc[0,1]
     
