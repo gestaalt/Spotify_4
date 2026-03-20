@@ -93,8 +93,12 @@ def categorize_eras():
     
     albums['era'] = albums['release_date_dt'].apply(get_era)
     # Updating the database with the new information [cite: 63]
-    albums.to_sql('albums_with_era', conn, if_exists='replace', index=False)
-    print("\n--- New table 'albums_with_era' created successfully ---")
+    # The assignment asks to add the column to `albums_data`, so we overwrite the table
+    # with the same columns plus `era`.
+    if 'release_date_dt' in albums.columns:
+        albums = albums.drop(columns=['release_date_dt'])
+    albums.to_sql('albums_data', conn, if_exists='replace', index=False)
+    print("\n--- Column 'era' added to table 'albums_data' ---")
     conn.close()
 
 # --- 5 & 6. EXPLICIT CONTENT ANALYSIS ---
