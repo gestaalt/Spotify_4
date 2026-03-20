@@ -123,7 +123,7 @@ def analyze_explicit_content():
     print(pd.read_sql_query(prop_query, conn))
     conn.close()
 
-# --- 7. COLLABORATION ANALYSIS (ADDED) ---
+# --- 7. COLLABORATION ANALYSIS ---
 # Requirement: Are collaborations more popular? Add column and investigate 
 def analyze_collaborations():
     conn = connect_db()
