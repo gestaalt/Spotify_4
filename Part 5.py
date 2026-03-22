@@ -2,6 +2,7 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
+import ast
 
 st.set_page_config(page_title="Spotify Analytics", layout="wide")
 
@@ -49,6 +50,13 @@ def get_year_bounds():
     years_df['year'] = pd.to_datetime(years_df['release_date'], errors='coerce').dt.year
     years = years_df['year'].dropna().astype(int)
     return int(years.min()), int(years.max())
+
+@st.cache_data(show_spinner=False)
+def get_genre_data():
+    conn = get_db()
+    return pd.read_sql_query(
+        "SELECT name, artist_popularity, followers, artist_genres FROM artist_data", conn
+    )
 
 @st.cache_data(show_spinner=False)
 def get_yearly_trend_data():
@@ -446,13 +454,7 @@ elif current_page == "Genre Explorer":
     st.title("Genre Explorer")
     st.write("Select a genre and see the top artists.")
 
-    import ast
-
-    fresh_conn = sqlite3.connect('spotify_database.db', check_same_thread=False)
-    artists_raw = pd.read_sql_query(
-        "SELECT name, artist_popularity, followers, artist_genres FROM artist_data", fresh_conn
-    )
-    fresh_conn.close()
+    artists_raw = get_genre_data()
 
     all_genres = []
     for val in artists_raw['artist_genres'].dropna():
