@@ -93,6 +93,30 @@ ALMOST_BLACK = '#191414'
 st.sidebar.header("Navigation")
 current_page = st.sidebar.radio("Select Page",
     ["Home", "Feature Analysis", "Artist Analysis", "Artist Search", "Compare Artists", "Genre Explorer"])
+st.sidebar.markdown("---")
+st.sidebar.subheader("🎨 Customize Colors")
+theme = st.sidebar.selectbox("Color Theme", 
+    ["Spotify Green", "Purple Haze", "Ocean Blue", "Sunset Orange", "Dark Mode"])
+
+if theme == "Purple Haze":
+    SPOTIFY_GREEN = '#8B5CF6'
+    SPOTIFY_GREEN_LIGHT = '#A78BFA'
+elif theme == "Ocean Blue":
+    SPOTIFY_GREEN = '#3B82F6'
+    SPOTIFY_GREEN_LIGHT = '#60A5FA'
+elif theme == "Sunset Orange":
+    SPOTIFY_GREEN = '#F97316'
+    SPOTIFY_GREEN_LIGHT = '#FB923C'
+elif theme == "Dark Mode":
+    SPOTIFY_GREEN = '#10B981'
+    SPOTIFY_GREEN_LIGHT = '#34D399'
+else:  # default
+    SPOTIFY_GREEN = '#1DB954'
+    SPOTIFY_GREEN_LIGHT = '#1ED760'
+
+DARK_GREY = '#535353'
+LIGHT_GREY = '#B3B3B3'
+ALMOST_BLACK = '#191414'
 
 # home page
 if current_page == "Home":

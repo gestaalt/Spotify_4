@@ -11,35 +11,47 @@ This project analyses a Spotify music dataset to uncover patterns in artist popu
 
 ## Quick Start
 
-### 1. Install dependencies
+### 1. Set up a virtual environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # on Linux/Mac
+```
+
+### 2. Install dependencies
 
 ```bash
 pip install pandas numpy matplotlib seaborn statsmodels streamlit
 ```
 
-> `sqlite3` is part of Python's standard library — no installation needed.
 
-### 2. Run the dashboard
+### 3. Run the dashboard
 
 ```bash
-streamlit run "Part 5.py"
+streamlit run "part5.py"
 ```
 
 Then open your browser at **http://localhost:8501**
 
-### 3. Run individual analysis scripts
+### 4. Run individual analysis scripts
 
 ```bash
-python "Part 1.py"   # Artist analysis
-python "Part 3.py"   # Explicit content analysis
+python "par1.py"   # Artist analysis
+python "part3.py"   # Explicit content analysis
 python part4.py      # Data cleaning & outlier detection
+```
+
+### *To close the env, just:
+
+```bash
+deactivate
 ```
 
 ---
 
 ## Dashboard Pages
 
-The Streamlit dashboard (`Part 5.py`) has **6 pages**:
+The Streamlit dashboard (`part5.py`) has **6 pages**:
 
 | Page | Description |
 |------|-------------|
@@ -56,10 +68,10 @@ The Streamlit dashboard (`Part 5.py`) has **6 pages**:
 
 ```
 Spotifiy_4/
-├── Part 1.py              # Artist analysis (CSV)
-├── Part 3.py              # Explicit content analysis (database)
+├── part1.py               # Artist analysis (CSV)
+├── part3.py               # Explicit content analysis (database)
 ├── part4.py               # Outlier detection & data cleaning
-├── Part 5.py              # Interactive Streamlit dashboard
+├── part5.py               # Interactive Streamlit dashboard
 ├── spotify_database.db    # SQLite database (artists, albums, tracks, features)
 └── artist_data.csv        # Artist metadata source for Part 1
 ```
